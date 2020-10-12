@@ -1,7 +1,7 @@
 - hosts: all
   tasks:
   - name: Instal ntpd
-    yum:
+    package:
       name: ntp
       state: latest
 
@@ -16,8 +16,15 @@
       path: /etc/ntp.conf
       regex: "^server [1,2,3].amazon.pool.ntp.org iburst$"
       state: absent
+      backup: yes
 
   - name: Start ntpd
     service:
       name: ntpd
-      state: started
+      state: restarted
+
+  handlers:
+  - name: Restart ntpd
+    service:
+      name: ntpd
+      state: restarted
