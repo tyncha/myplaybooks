@@ -1,0 +1,5 @@
+---
+- hosts: 54.208.153.245
+  tasks:
+      name: install httpd*
+      yum: name=httpd state=latest

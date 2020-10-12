@@ -1,7 +1,17 @@
-- hosts: all
+---
+- name: Install packages
+  become: yes
+  become_method: sudo
+  user: ec2-user
+  hosts: all
   tasks:
-  - name: Install ntpd
-    yum:
-      name: ntp
+  - name: Install Apache
+    package:
+      name: "{{item}}"
       state: latest
-
+    with_items:
+    - telnet
+    - gzip
+    - lftp
+    - httpd
+    - vsftpd
