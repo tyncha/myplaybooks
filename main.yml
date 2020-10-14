@@ -17,3 +17,13 @@
     when: yum.changed or selinux.changed
   - name: Install PHP
     include_tasks: php.yml
+
+  - name: Install Apache
+    include_tasks: apache.yml
+
+  - name: Install WordPress
+    include_tasks: wordpress.yml
+
+  - name: Install WordPress
+    include_tasks: mysql.yml
+    when: local_mysql
