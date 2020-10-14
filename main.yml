@@ -1,0 +1,19 @@
+- hosts: all
+  tasks:
+  - name: Install Prerequisites
+    yum:
+      name:
+      - vim
+      - epel-release
+      - kernel
+    register: yum
+  - name: Disable SELinux
+    selinux:
+      state: disabled
+    register: selinux
+  - name: Reboot
+    reboot:
+      reboot_timeout: 600
+    when: yum.changed or selinux.changed
+  - name: Install PHP
+    include_tasks: php.yml
