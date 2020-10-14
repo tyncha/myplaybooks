@@ -1,0 +1,7 @@
+- hosts: all
+  tasks:
+  - name: Install ssh key
+    authorized_key:
+      user: ec2-user
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDXSHBw+WWaBF6la9Jb+z/qRV5gsnLUGIZsNsTn8ch8xTjaCubdZXDlcuq3namzQiDrPBtjV1qsO7k7h66BL7pYlWQPKFBq4G2mX8ALINWIeqhqnnkW1Tijoz6gzyqtSHAk1oJB0879dBB52cTI/HV/vM8rhLawKqKLIUSj49rOf8CAuUSntfYFYT0VLlQDN1Rj2ORAk7512jTZ0HWKFHmUNnmCLCrXD1R9CZDdJxrRiIa04ss1lQ9zeLrvdvyU1+3wDcwnV/0r8vwE0eRhHIlaTgp2cj9aTDA3ckdkNzUDUrd9GhTRa78/PLnfW/K0nYKwUYds+ff7Nu7ksR5hUiN5 tyncha@Tynchtyks-MacBook-Pro.local"

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 - hosts: all
   tasks:
   - name: Install Prerequisites
@@ -27,3 +28,8 @@
   - name: Install WordPress
     include_tasks: mysql.yml
     when: local_mysql
+=======
+- hosts: web
+  tasks:
+  - include_tasks: hostname.yml
+>>>>>>> 4bdf1a5faa49ed0f67129869e0e89ba0989a13b9

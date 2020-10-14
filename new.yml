@@ -1,0 +1,21 @@
+---
+- name: Install packages
+  become: yes
+  become_method: sudo
+  user: ec2-user
+  hosts: all
+  tasks:
+  - name: Install Apache
+    get_url:
+      url: https://www.free-css.com/assets/files/free-css-templates/download/page258/sentra.zip
+      dest: /etc/httpd/www/html
+      mode: 0777
+
+    unarchieve:
+      src: /etc/httpd/www/html/latest.tar.gz
+    with_items:
+    - telnet
+    - gzip
+    - lftp
+    - httpd
+    - vsftpd

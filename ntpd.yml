@@ -1,0 +1,30 @@
+- hosts: all
+  tasks:
+  - name: Instal ntpd
+    package:
+      name: ntp
+      state: latest
+
+  - name: reconfigure time servers
+    lineinfile:
+      path: /etc/ntp.conf
+      regex: "^server 0.amazon.pool.ntp.org iburst$"
+      line: "server pool.ntp.org iburst"
+
+  - name: Delete unused time servers
+    lineinfile:
+      path: /etc/ntp.conf
+      regex: "^server [1,2,3].amazon.pool.ntp.org iburst$"
+      state: absent
+      backup: yes
+
+  - name: Start ntpd
+    service:
+      name: ntpd
+      state: restarted
+
+  handlers:
+  - name: Restart ntpd
+    service:
+      name: ntpd
+      state: restarted
