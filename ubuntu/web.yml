@@ -1,0 +1,38 @@
+---
+- hosts: web
+  tasks:
+  - name: Install httpd
+    yum:
+      name: httpd
+      state: latest
+
+  - name: Start httpf
+    systemd: 
+      name: httpd
+      state: started
+
+  - name: Enable httpd
+    systemd:
+      name: httpd
+      enables: yes
+      masks: no
+
+  - name: Download templates
+    get_url:
+      url: https://www.free-css.com/assets/files/free-css-templates/download/page259/vanilla.zip
+      dest: /var/www/html
+
+  - name: Install unzip 
+    yum:
+      name: unzip
+      state: latest
+    
+  - name: unzip file
+    unarchive:
+      src: /var/www/html/vanilla.zip
+      dest: /var/www/html
+      remote_src: yes
+
+  - name: Move file
+    shell: mv /var/www/html/templatemo_526_vanilla/* /var/www/html
+    ignore_errors: yes
